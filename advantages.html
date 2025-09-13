@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Преимущества — Lince OCR Scanner</title>
+    <!-- Подключение шрифтов -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Bebas+Neue&family=Raleway:wght@500&family=Inter&family=Roboto&display=swap"
+        rel="stylesheet">
+    <!-- Подключение общего стиля -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Уникальные стили для этой страницы -->
+    <style>
+        .section-title {
+            font-family: 'Bebas Neue', 'Raleway', sans-serif;
+            color: #d19422;
+            font-size: 48px;
+            text-align: center !important;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+            max-width: 100%;
+            width: fit-content;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 8px;
+            background-color: #d19422;
+            display: block;
+            margin: 20px auto;
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 36px;
+            }
+        }
+
+        .features-container {
+            padding: 0 10%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 60px 0 80px;
+            position: relative;
+            z-index: 2;
+            /* Чтобы не сливался с фоном/видео */
+        }
+
+        .feature-card {
+            /* Сохраняем оригинальные размеры и поведение */
+            width: 250px;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+            /* Улучшенный визуал: градиент + тень + blur */
+            background: linear-gradient(145deg, rgba(30, 40, 42, 0.95), rgba(18, 24, 26, 0.95));
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.35),
+                0 0 0 1px rgba(209, 148, 34, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(209, 148, 34, 0.1);
+            position: relative;
+        }
+
+        .feature-card:hover {
+            /* Сохраняем прежнее translateY(-5px), но добавляем лёгкое увеличение */
+            transform: translateY(-5px) scale(1.02);
+            box-shadow:
+                0 12px 35px rgba(0, 0, 0, 0.45),
+                0 0 0 2px rgba(209, 148, 34, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            color: #d19422;
+            margin-bottom: 15px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(3deg);
+        }
+
+        .feature-title {
+            font-family: 'Bebas Neue', 'Raleway', sans-serif;
+            color: #d19422;
+            font-size: 20px;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .feature-card:hover .feature-title {
+            color: #f0b545;
+        }
+
+        .feature-text {
+            font-size: 16px;
+            color: #E0E0E0;
+            line-height: 1.5;
+            transition: color 0.3s;
+        }
+
+        .feature-card:hover .feature-text {
+            color: #ffffff;
+        }
+
+        /* Адаптивность — ОСТАВЛЯЕМ КАК В ОРИГИНАЛЕ */
+        @media (max-width: 768px) {
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature-card {
+                width: 100%;
+                max-width: 300px;
+                padding: 25px;
+                /* чуть больше отступов для удобства */
+            }
+
+            .feature-icon {
+                font-size: 45px;
+            }
+
+            .feature-title {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-wrapper">
+        <video autoplay muted loop class="background-video">
+            <source src="fon1.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео-фоны.
+        </video>
+
+        <header class="header">
+            <img src="Logo_1.png" alt="Логотип Lince" class="logo">
+            <div class="nav-links">
+                <a href="index.html">Главная</a>
+                <a href="how-it-works.html">Как работает</a>
+                <a href="testimonials.html">Отзывы</a>
+            </div>
+            <div class="contacts">
+                <span>Позвоните нам:</span>
+                <a href="tel:+380800337685">+38 0800 337 685</a>
+            </div>
+        </header>
+
+        <h2 class="section-title">Преимущества Lince OCR</h2>
+
+        <div class="features-container">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <div class="feature-title">Точность 99.8%</div>
+                <div class="feature-text">Распознаем даже мелкий и размытый текст с минимальной погрешностью.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">Скорость обработки</div>
+                <div class="feature-text">Любой документ — за 3 секунды. Без задержек и ожиданий.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <div class="feature-title">150+ языков</div>
+                <div class="feature-text">Поддержка всех основных языков мира, включая кириллицу и иероглифы.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-title">Полная конфиденциальность</div>
+                <div class="feature-text">Никаких серверов — все данные обрабатываются только на вашем устройстве.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <div class="feature-title">Кроссплатформенность</div>
+                <div class="feature-text">Работает на Windows, macOS, iOS, Android и в браузере.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <div class="feature-title">Экспорт в любой формат</div>
+                <div class="feature-text">TXT, DOCX, PDF, Excel — выбирайте удобный формат для сохранения.</div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        © 2023 Lince OCR Scanner. Все права защищены.
+    </footer>
+
+    <div class="video-icon">▶</div>
+
+    <script>
+        document.querySelector('.video-icon').addEventListener('click', function () {
+            alert('Здесь будет запускаться демонстрационный видео-ролик о работе Lince OCR Scanner.');
+        });
+    </script>
+</body>
+
+</html>

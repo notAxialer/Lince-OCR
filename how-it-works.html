@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Как работает — Lince OCR Scanner</title>
+    <!-- Подключение шрифтов -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Bebas+Neue&family=Raleway:wght@500&family=Inter&family=Roboto&display=swap"
+        rel="stylesheet">
+    <!-- Подключение общего стиля -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Уникальные стили -->
+    <style>
+        .section-title {
+            font-family: 'Bebas Neue', 'Raleway', sans-serif;
+            color: #d19422;
+            font-size: 48px;
+            text-align: center !important;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+            max-width: 100%;
+            width: fit-content;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 8px;
+            background-color: #d19422;
+            display: block;
+            margin: 20px auto;
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 36px;
+            }
+        }
+
+        .steps-container {
+            padding: 0 10%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            width: 100%;
+            max-width: 950px;
+            background: linear-gradient(135deg, rgba(30, 40, 42, 0.95), rgba(18, 24, 26, 0.95));
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(209, 148, 34, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.4s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.5),
+                0 0 0 2px rgba(209, 148, 34, 0.5);
+        }
+
+        .step:hover::before {
+            transform: scaleY(1);
+        }
+
+        .step-number {
+            min-width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #d19422, #b07a18);
+            color: #161c1d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', 'Raleway', sans-serif;
+            font-size: 36px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-content h3 {
+            font-family: 'Oswald', 'Raleway', sans-serif;
+            color: #d19422;
+            font-size: 28px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .step-content p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #E0E0E0;
+            max-width: 500px;
+        }
+
+        .step-image {
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle, rgba(209, 148, 34, 0.2), transparent 70%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: #d19422;
+            box-shadow: inset 0 0 0 2px rgba(209, 148, 34, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .step:hover .step-image {
+            transform: scale(1.05);
+            box-shadow: inset 0 0 0 3px rgba(209, 148, 34, 0.6);
+        }
+
+        .step.reverse {
+            flex-direction: row-reverse;
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 36px;
+            }
+
+            .step {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 25px;
+            }
+
+            .step.reverse {
+                flex-direction: column;
+            }
+
+            .step-image {
+                margin-top: 25px;
+            }
+
+            .step-content p {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-wrapper">
+        <video autoplay muted loop class="background-video">
+            <source src="fon1.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео-фоны.
+        </video>
+
+        <header class="header">
+            <img src="Logo_1.png" alt="Логотип Lince" class="logo">
+            <div class="nav-links">
+                <a href="index.html">Главная</a>
+                <a href="advantages.html">Преимущества</a>
+                <a href="testimonials.html">Отзывы</a>
+            </div>
+            <div class="contacts">
+                <span>Позвоните нам:</span>
+                <a href="tel:+380800337685">+38 0800 337 685</a>
+            </div>
+        </header>
+
+        <h2 class="section-title">Как работает Lince OCR</h2>
+
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Загрузите документ</h3>
+                    <p>Перетащите изображение, PDF или фото документа в интерфейс программы — или выберите файл вручную.
+                    </p>
+                </div>
+                <div class="step-image">📤</div>
+            </div>
+
+            <div class="step reverse">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Автоматическое распознавание</h3>
+                    <p>Наш ИИ анализирует текст, структуру и форматирование — всё происходит локально, без интернета.
+                    </p>
+                </div>
+                <div class="step-image">🧠</div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Редактируйте и экспортируйте</h3>
+                    <p>Исправьте неточности, если нужно, и сохраните результат в TXT, DOCX, PDF или Excel.</p>
+                </div>
+                <div class="step-image">💾</div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        © 2023 Lince OCR Scanner. Все права защищены.
+    </footer>
+
+    <div class="video-icon">▶</div>
+
+    <script>
+        document.querySelector('.video-icon').addEventListener('click', function () {
+            alert('Здесь будет запускаться демонстрационный видео-ролик о работе Lince OCR Scanner.');
+        });
+    </script>
+</body>
+
+</html>

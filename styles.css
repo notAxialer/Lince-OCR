@@ -1,0 +1,385 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Roboto', sans-serif;
+    color: #E0E0E0;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.content-wrapper {
+    flex: 1 0 auto;
+    position: relative;
+}
+
+/* Стили для фонового видео */
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    transform: scale(1.05);
+    filter:
+        brightness(0.8)
+        /* Затемнение: 0 = полностью черный, 1 = оригинал, >1 = осветление */
+        blur(2px);
+    /* Размытие в пикселях */
+}
+
+.header {
+    position: relative;
+    padding: 22px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    /* Перемещает навигацию вправо */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #E0E0E0;
+    font-family: 'Oswald', 'Raleway', sans-serif;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #d19422;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contacts span {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #B0B0B0;
+}
+
+.contacts a {
+    text-decoration: none;
+    color: #E0E0E0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.contacts a:hover {
+    color: #d19422;
+}
+
+.logo {
+    max-width: 150px;
+    height: auto;
+    /* Отступ справа от логотипа */
+}
+
+.video-icon {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: #d19422;
+    color: #161c1d;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 10;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.video-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.main-hero {
+    position: relative;
+    padding: 20px 10%;
+    text-align: center;
+    min-height: 68vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1 {
+    font-family: 'Bebas Neue', 'Raleway', sans-serif;
+    color: #d19422;
+    font-size: 60px;
+    margin-top: 30px;
+    position: relative;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+h1::after {
+    content: '';
+    width: 80px;
+    height: 8px;
+    background-color: #d19422;
+    display: block;
+    margin: 20px auto;
+}
+
+h2 {
+    font-family: 'Oswald', 'Raleway', sans-serif;
+    color: #E0E0E0;
+    font-size: 24px;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.cta-button_main {
+    background-color: #d19422;
+    color: #161c1d;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: 'Bebas Neue', 'Raleway', sans-serif;
+    font-weight: bold;
+    transition: all 0.3s;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    margin: 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cta-button_main:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+}
+
+.cta-button {
+    background-color: #d19422;
+    color: #161c1d;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: 'Bebas Neue', 'Raleway', sans-serif;
+    font-weight: bold;
+    transition: all 0.3s;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin: 2% auto;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+}
+
+.demo-section {
+    background-color: rgba(22, 28, 29, 0.85);
+    border-radius: 20px;
+    max-width: 80%;
+    width: 100%;
+    margin: 0 auto;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    overflow-y: auto;
+    max-height: 90vh;
+    display: none;
+    /* По умолчанию скрыт */
+}
+
+.demo-section.active {
+    display: block;
+    /* Отображается только при добавлении класса active */
+}
+
+.close-demo {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    color: #E0E0E0;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-demo:hover {
+    color: #d19422;
+}
+
+.upload-area {
+    border: 2px dashed #d19422;
+    border-radius: 15px;
+    padding: 40px 20px;
+    text-align: center;
+    margin: 20px 0;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.upload-area:hover {
+    background-color: rgba(209, 148, 34, 0.1);
+}
+
+.upload-area p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.feature-card {
+    background-color: rgba(26, 34, 36, 0.7);
+    border-radius: 15px;
+    padding: 20px;
+    width: 220px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 40px;
+    color: #d19422;
+    margin-bottom: 15px;
+}
+
+.feature-title {
+    font-family: 'Bebas Neue', 'Raleway', sans-serif;
+    color: #d19422;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.feature-text {
+    font-size: 16px;
+    color: #E0E0E0;
+    line-height: 1.5;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 99;
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    background-color: rgba(26, 34, 36, 0.8);
+    width: 100%;
+    flex-shrink: 0;
+    margin-top: auto;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .nav-links,
+    .contacts {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logo {
+        position: static;
+        margin: 10px 0;
+    }
+
+    .video-icon {
+        position: fixed;
+        bottom: 20px;
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    h1 {
+        font-size: 42px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+
+    .demo-section {
+        padding: 20px 15px;
+        width: 90%;
+    }
+
+    .features {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature-card {
+        width: 100%;
+        max-width: 300px;
+    }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lince OCR Scanner</title>
+    <!-- Подключение шрифтов -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Bebas+Neue&family=Raleway:wght@500&family=Inter&family=Roboto&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <video autoplay muted loop class="background-video">
+        <source src="fon1.mp4" type="video/mp4">
+        Ваш браузер не поддерживает видео-фоны.
+    </video>
+
+    <div class="content-wrapper">
+        <header class="header">
+            <img src="Logo_1.png" alt="Логотип Lince" class="logo">
+            <div class="nav-links">
+                <a href="advantages.html">Преимущества</a>
+                <a href="how-it-works.html">Как работает</a>
+                <a href="testimonials.html">Отзывы</a>
+            </div>
+            <div class="contacts">
+                <span>Позвоните нам:</span>
+                <a href="tel:+380800337685">+38 0800 337 685</a>
+            </div>
+        </header>
+
+        <main>
+            <section class="main-hero">
+                <h1>Сканируйте документы<br>с точностью хищника</h1>
+                <h2>Lince OCR Scanner — это инструмент, который превращает бумажные документы в цифровые за считанные секунды.
+                    Наслаждайтесь высокой точностью распознавания и удобным интерфейсом.</h2>
+                <button class="cta-button_main" id="check-accuracy-btn">Проверить точность бесплатно</button>
+            </section>
+        </main>
+
+        <div class="video-icon">▶</div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="demo-section" id="demo-section">
+        <span class="close-demo" id="close-demo">&times;</span>
+        <h2 style="color: #d19422; text-align: center; margin-bottom: 20px;">Проверьте точность бесплатно</h2>
+        <div class="upload-area">
+            <div class="feature-icon">📁</div>
+            <h3>Перетащите сюда ваш документ</h3>
+            <p>Или нажмите для выбора файла</p>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <div class="feature-title">Точность 99.8%</div>
+                <div class="feature-text">Самый точный OCR на рынке с поддержкой 150+ языков</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">Мгновенная обработка</div>
+                <div class="feature-text">Результат за 3 секунды даже для сложных документов</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-title">Безопасность</div>
+                <div class="feature-text">Все документы обрабатываются локально, без отправки на сервер</div>
+            </div>
+        </div>
+
+        <button class="cta-button">Начать распознавание</button>
+    </div>
+
+    <footer class="footer">
+        © 2023 Lince OCR Scanner. Все права защищены.
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
