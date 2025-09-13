@@ -31,14 +31,12 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
-          # Указываем, что сайт будет использовать корень репозитория
-          path: '.'
+          enablement: enable   # ← Включает Pages автоматически
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Загружаем все файлы из корня
-          path: '.'
+          path: '.'   # ← Здесь path — ВАЛИДЕН (это для upload, а не для configure)
 
       - name: Deploy to GitHub Pages
         id: deployment
