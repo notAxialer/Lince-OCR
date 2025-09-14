@@ -4,6 +4,62 @@
     box-sizing: border-box;
 }
 
+/* Анимации и переходы */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #161c1d;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.page-transition.active {
+    opacity: 1;
+}
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #161c1d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    transition: opacity 0.5s ease;
+}
+
+.preloader-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(209, 148, 34, 0.2);
+    border-top: 5px solid #d19422;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
 body {
     font-family: 'Inter', 'Roboto', sans-serif;
     color: #E0E0E0;
@@ -14,6 +70,8 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
+    animation: fadeIn 0.5s ease;
+    background: #161c1d; /* Фон на время загрузки */
 }
 
 .content-wrapper {
@@ -31,11 +89,7 @@ body {
     object-fit: cover;
     z-index: -1;
     transform: scale(1.05);
-    filter:
-        brightness(0.8)
-        /* Затемнение: 0 = полностью черный, 1 = оригинал, >1 = осветление */
-        blur(2px);
-    /* Размытие в пикселях */
+    filter: brightness(0.8) blur(2px);
 }
 
 .header {
@@ -45,12 +99,12 @@ body {
     align-items: center;
     justify-content: space-between;
     z-index: 10;
+    animation: slideUp 0.6s ease;
 }
 
 .nav-links {
     display: flex;
     gap: 30px;
-    /* Перемещает навигацию вправо */
 }
 
 .nav-links a {
@@ -58,11 +112,28 @@ body {
     color: #E0E0E0;
     font-family: 'Oswald', 'Raleway', sans-serif;
     font-size: 18px;
-    transition: color 0.3s;
+    transition: color 0.3s, transform 0.3s;
+    position: relative;
 }
 
 .nav-links a:hover {
     color: #d19422;
+    transform: translateY(-2px);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #d19422;
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 .contacts {
@@ -92,15 +163,19 @@ body {
 .logo {
     max-width: 150px;
     height: auto;
-    /* Отступ справа от логотипа */
+    transition: transform 0.3s;
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 .video-icon {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     background-color: #d19422;
     color: #161c1d;
     border-radius: 50%;
@@ -119,6 +194,11 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
+.video-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
 .main-hero {
     position: relative;
     padding: 20px 10%;
@@ -127,6 +207,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    animation: slideUp 0.8s ease;
 }
 
 h1 {
@@ -145,6 +226,11 @@ h1::after {
     background-color: #d19422;
     display: block;
     margin: 20px auto;
+    transition: width 0.5s;
+}
+
+h1:hover::after {
+    width: 120px;
 }
 
 h2 {
@@ -171,7 +257,7 @@ h2 {
     font-weight: bold;
     transition: all 0.3s;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-    margin: 20px 0;
+    margin: 20px 150px 0px 150px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -221,12 +307,13 @@ h2 {
     overflow-y: auto;
     max-height: 90vh;
     display: none;
-    /* По умолчанию скрыт */
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .demo-section.active {
     display: block;
-    /* Отображается только при добавлении класса active */
+    opacity: 1;
 }
 
 .close-demo {
@@ -236,11 +323,12 @@ h2 {
     font-size: 24px;
     color: #E0E0E0;
     cursor: pointer;
-    transition: color 0.3s;
+    transition: color 0.3s, transform 0.3s;
 }
 
 .close-demo:hover {
     color: #d19422;
+    transform: scale(1.2);
 }
 
 .upload-area {
@@ -255,6 +343,7 @@ h2 {
 
 .upload-area:hover {
     background-color: rgba(209, 148, 34, 0.1);
+    transform: translateY(-5px);
 }
 
 .upload-area p {
@@ -276,11 +365,12 @@ h2 {
     padding: 20px;
     width: 220px;
     text-align: center;
-    transition: transform 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .feature-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .feature-icon {
@@ -311,10 +401,13 @@ h2 {
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 99;
     display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .overlay.active {
     display: block;
+    opacity: 1;
 }
 
 .footer {
@@ -325,9 +418,10 @@ h2 {
     width: 100%;
     flex-shrink: 0;
     margin-top: auto;
+    animation: slideUp 0.5s ease;
 }
 
-/* Адаптивность */
+/* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
@@ -353,6 +447,13 @@ h2 {
         bottom: 20px;
         right: 50%;
         transform: translateX(50%);
+        width: 50px;
+        height: 50px;
+    }
+
+    .video-icon svg {
+        width: 20px;
+        height: 20px;
     }
 
     h1 {
@@ -381,5 +482,98 @@ h2 {
     .feature-card {
         width: 100%;
         max-width: 300px;
+    }
+}
+
+/* Стили для 2K мониторов и выше */
+@media (min-width: 1920px) {
+    body {
+        font-size: 18px;
+    }
+
+    h1 {
+        font-size: 72px;
+    }
+
+    h2 {
+        font-size: 28px;
+        max-width: 900px;
+    }
+
+    .header {
+        padding: 30px 8%;
+    }
+
+    .nav-links a {
+        font-size: 30px;
+    }
+
+    .contacts span {
+        font-size: 20px;
+    }
+
+    .contacts a {
+        font-size: 22px;
+    }
+
+    .logo {
+        max-width: 200px;
+    }
+
+    .cta-button_main {
+        padding: 20px 50px;
+        font-size: 22px;
+        margin: 0px 450px 0px 450px;
+    }
+
+    .feature-card {
+        width: 260px;
+        padding: 25px;
+    }
+
+    .feature-title {
+        font-size: 22px;
+    }
+
+    .feature-text {
+        font-size: 18px;
+    }
+
+    .video-icon {
+        width: 70px;
+        height: 70px;
+        bottom: 40px;
+        right: 40px;
+    }
+
+    .video-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Дополнительные медиа-запросы для очень больших экранов */
+@media (min-width: 2560px) {
+    h1 {
+        font-size: 84px;
+    }
+
+    h2 {
+        font-size: 32px;
+        max-width: 1000px;
+    }
+
+    .cta-button_main {
+        padding: 20px 50px;
+        font-size: 22px;
+        margin: 0px 450px 0px 450px;
+    }
+}
+
+/* Улучшение читаемости шрифтов */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 }
