@@ -1,24 +1,36 @@
 // Обработка загрузки страницы
 document.addEventListener('DOMContentLoaded', function() {
-    // Скрываем прелоадер после загрузки страницы
-    setTimeout(function() {
+    // Функция для скрытия прелоадера
+    function hidePreloader() {
         const preloader = document.querySelector('.preloader');
+        const contentWrapper = document.querySelector('.content-wrapper');
+        
         if (preloader) {
-            preloader.style.opacity = '0';
+            preloader.style.animation = 'fadeOut 0.5s forwards';
             setTimeout(function() {
-                preloader.style.display = 'none';
+                preloader.classList.add('hidden');
             }, 500);
         }
-    }, 800);
+        
+        if (contentWrapper) {
+            contentWrapper.classList.add('visible');
+            contentWrapper.classList.add('loaded');
+        }
+    }
+    
+    // Скрываем прелоадер после полной загрузки страницы
+    window.addEventListener('load', function() {
+        setTimeout(hidePreloader, 800);
+    });
+    
+    // На всякий случай скрываем прелоадер через 5 секунд, даже если страница не загрузилась
+    setTimeout(hidePreloader, 5000);
     
     // Инициализация плавных переходов
     initSmoothTransitions();
     
     // Инициализация анимаций при прокрутке
     initScrollAnimations();
-
-    // Инициализация переходов между страницами
-    initPageTransitions();
 
     // Инициализация демо-секции (только на главной)
     initDemoSection();
@@ -31,6 +43,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (pageTransition) {
         pageTransition.classList.remove('active');
     }
+    
+    // Инициализация переходов между страницами
+    initPageTransitions();
 });
 
 // Инициализация демо-секции
@@ -144,8 +159,12 @@ function initScrollAnimations() {
 function initPageTransitions() {
     document.querySelectorAll('a').forEach(link => {
         // Проверяем, что это внутренняя ссылка и не якорь
-        if (link.href && link.origin === window.location.origin && !link.hash) {
+        if (link.href && link.origin === window.location.origin && !link.hash && 
+            !link.href.includes('#') && link.target !== '_blank') {
             link.addEventListener('click', function(e) {
+                // Для ссылок, которые уже обрабатываются другими обработчиками, пропускаем
+                if (e.defaultPrevented) return;
+                
                 e.preventDefault();
                 const href = link.href;
 
@@ -155,6 +174,7 @@ function initPageTransitions() {
                     pageTransition.classList.add('active');
                 }
 
+                // Ждем завершения анимации перед переходом
                 setTimeout(() => {
                     window.location.href = href;
                 }, 500);
@@ -189,3 +209,6 @@ if (window.innerWidth <= 768) {
 document.fonts.ready.then(function() {
     console.log('Все шрифты загружены');
 });
+
+// Инициализация переходов между страницами при загрузке
+initPageTransitions();
