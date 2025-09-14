@@ -523,7 +523,7 @@ h2 {
     .cta-button_main {
         padding: 20px 50px;
         font-size: 22px;
-        margin: 0px 450px 0px 450px;
+        margin: 0px 250px 0px 250px;
     }
 
     .feature-card {
@@ -675,3 +675,4 @@ h2 {
 .content-wrapper.visible {
     opacity: 1 !important;
 }
+
