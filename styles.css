@@ -257,7 +257,7 @@ h2 {
     font-weight: bold;
     transition: all 0.3s;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-    margin: 20px 0px 0px 0px;
+    margin: 20px 30px 0px 30px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -675,4 +675,5 @@ h2 {
 .content-wrapper.visible {
     opacity: 1 !important;
 }
+
 
